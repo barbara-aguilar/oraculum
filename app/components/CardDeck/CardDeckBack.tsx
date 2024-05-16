@@ -4,6 +4,7 @@ import BackTarotImg from '../BackTarotImg/BackTarotImg';
 
 type cardsProps = {
   cards: number[];
+  onClick?: () => void;
 };
 
 const CardDeckBack = ({ cards }: cardsProps) => {

@@ -1,58 +1,70 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { initializeCardsArray, CardsArray, getCardProps, shuffle } from '../../utils/utils';
+import React, { useState } from 'react';
+import { CardsArray, shuffle } from '../../utils/utils';
+import Card, { CardProps } from '../Card/Card';
+import Modal from '../Modal/Modal';
 import style from './CardDeck.module.scss';
-import CardDeckBack from './CardDeckBack';
-import CardDeckFront from './CardDeckFront';
 
 const CardDeck = () => {
-  const [backDeck, setbackDeck] = useState<number[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBackDeck, setShowBackDeck] = useState(false);
-  const [showCardModal, setShowCardModal] = useState(false);
+  const [shuffledDeck, setShuffledDeck] = useState(CardsArray);
+  const [selectedCard, setSelectedCard] = useState<CardProps | null>(null);
 
-  const handleCloseCardModal = () => {
-    setShowCardModal(false);
-  };
-
-  const populateBackDeck = () => {
-    const cards = initializeCardsArray();
-    setbackDeck(cards);
+  const handleCardClick = (card: React.SetStateAction<CardProps | null>) => {
+    setIsModalOpen(true);
+    setSelectedCard(card);
   };
 
   const handleDeckInitial = () => {
-    populateBackDeck();
     setShowBackDeck(true);
-    let shuflledDeck = CardsArray;
-    shuffle(shuflledDeck);
+    let shuffledCards = shuffle(shuffledDeck);
+    setShuffledDeck(shuffledCards);
   };
 
   return (
     <div className={style.container}>
-      {showBackDeck ? (
-        <>
-          <div className={style.grid}>
-            <CardDeckBack cards={backDeck} />
-          </div>
-          <div className={style.content}>
-            <h5 className={style.title}>Escolha uma carta para iniciar a consulta.</h5>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={style.grid}>
-            <CardDeckFront cards={getCardProps(CardsArray)} />
-          </div>
-          <div className={style.content}>
-            <h5 className={style.title}>
-              Oraculum te permite consultar a sorte do dia no tarot. Clique no botão abaixo para
-              embaralhar as cartas e iniciar a consulta.
-            </h5>
-            <button className={style.btn} onClick={() => handleDeckInitial()}>
-              Iniciar Oraculum
-            </button>
-          </div>
-        </>
+      <div className={style.grid}>
+        {CardsArray.map((card, index) => {
+          return (
+            <div key={index}>
+              {showBackDeck ? (
+                <div key={index}>
+                  <Card
+                    name={card.name}
+                    frontImageUrl={card.image}
+                    isFlipped={showBackDeck}
+                    onClick={() => handleCardClick(card as unknown as CardProps)} // Pass the 'card' object as an argument and cast it as CardProps
+                  />
+                </div>
+              ) : (
+                <>
+                  <Card name={card.name} frontImageUrl={card.image} isFlipped={showBackDeck} />
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      {!!showBackDeck && (
+        <div className={style.content}>
+          <h5 className={style.title}>
+            Escolha uma carta acima e veja o que o Oraculum tem a dizer.
+          </h5>
+        </div>
       )}
+      {!showBackDeck && (
+        <div className={style.content}>
+          <h5 className={style.title}>
+            Oraculum te permite consultar a sorte do dia no tarot. Clique no botão abaixo para
+            embaralhar as cartas e iniciar a consulta.
+          </h5>
+          <button className={style.btn} onClick={() => handleDeckInitial()}>
+            Iniciar Oraculum
+          </button>
+        </div>
+      )}
+      {isModalOpen && <Modal card={selectedCard!} onClose={() => setIsModalOpen(false)} />}
     </div>
   );
 };
