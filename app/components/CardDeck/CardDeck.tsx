@@ -22,12 +22,8 @@ const CardDeck = () => {
   const handleDeckInitial = () => {
     populateBackDeck();
     setShowBackDeck(true);
-  };
-
-  const handlDeckShufle = () => {
     let shuflledDeck = CardsArray;
     shuffle(shuflledDeck);
-    return shuflledDeck;
   };
 
   return (
@@ -38,12 +34,7 @@ const CardDeck = () => {
             <CardDeckBack cards={backDeck} />
           </div>
           <div className={style.content}>
-            <h5 className={style.title}>
-              Clique no botão abaixo para embaralhar as cartas e iniciar a consulta.
-            </h5>
-            <button className={style.btn} onClick={handlDeckShufle}>
-              Embaralhar
-            </button>
+            <h5 className={style.title}>Escolha uma carta para iniciar a consulta.</h5>
           </div>
         </>
       ) : (
@@ -56,7 +47,7 @@ const CardDeck = () => {
               Oraculum te permite consultar a sorte do dia no tarot. Clique no botão abaixo para
               embaralhar as cartas e iniciar a consulta.
             </h5>
-            <button className={style.btn} onClick={handleDeckInitial}>
+            <button className={style.btn} onClick={() => handleDeckInitial()}>
               Iniciar Oraculum
             </button>
           </div>
