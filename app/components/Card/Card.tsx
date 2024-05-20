@@ -4,13 +4,13 @@ import Image from 'next/image';
 
 export type CardProps = {
   name: string;
-  frontImageUrl: string; // Imagem de frente
+  image: string; // Imagem de frente
   isFlipped: boolean;
   description?: string;
   onClick?: () => void;
 };
 
-const Card = ({ name, frontImageUrl, isFlipped, onClick }: CardProps) => {
+const Card = ({ name, image, isFlipped, onClick }: CardProps) => {
   return (
     <div className={`${style.containerCard} ${style.growRotateOnHover}`} onClick={onClick}>
       <div className="card-inner">
@@ -18,7 +18,7 @@ const Card = ({ name, frontImageUrl, isFlipped, onClick }: CardProps) => {
           src={
             isFlipped
               ? 'https://dkw5ssdvaqf8l.cloudfront.net/static/psr/br/framework/yii/images/content/pt-br/product/tarot/marselha/back-blue-card.png'
-              : `https://dkw5ssdvaqf8l.cloudfront.net/static/psr/br/framework/yii/images/content/pt-br/product/tarot/marselha/162x341/${frontImageUrl}`
+              : `https://dkw5ssdvaqf8l.cloudfront.net/static/psr/br/framework/yii/images/content/pt-br/product/tarot/marselha/162x341/${image}`
           }
           alt={name}
           priority={true}

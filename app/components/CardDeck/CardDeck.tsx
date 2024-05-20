@@ -8,6 +8,7 @@ import style from './CardDeck.module.scss';
 const CardDeck = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showBackDeck, setShowBackDeck] = useState(false);
+  const [initialDeck, setinitialDeck] = useState(CardsArray);
   const [shuffledDeck, setShuffledDeck] = useState(CardsArray);
   const [selectedCard, setSelectedCard] = useState<CardProps | null>(null);
 
@@ -25,6 +26,7 @@ const CardDeck = () => {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setShowBackDeck(false);
+    setinitialDeck(initialDeck);
   }
 
   return (
@@ -37,14 +39,14 @@ const CardDeck = () => {
                 <div key={index}>
                   <Card
                     name={card.name}
-                    frontImageUrl={card.image}
+                    image={card.image}
                     isFlipped={showBackDeck}
-                    onClick={() => handleCardClick(card as unknown as CardProps)} // Pass the 'card' object as an argument and cast it as CardProps
+                    onClick={() => handleCardClick(card as unknown as CardProps)} 
                   />
                 </div>
               ) : (
                 <>
-                  <Card name={card.name} frontImageUrl={card.image} isFlipped={showBackDeck} />
+                  <Card name={card.name} image={card.image} isFlipped={showBackDeck} />
                 </>
               )}
             </div>
