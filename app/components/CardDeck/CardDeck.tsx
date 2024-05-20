@@ -22,6 +22,11 @@ const CardDeck = () => {
     setShuffledDeck(shuffledCards);
   };
 
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setShowBackDeck(false);
+  }
+
   return (
     <div className={style.container}>
       <div className={style.grid}>
@@ -64,7 +69,7 @@ const CardDeck = () => {
           </button>
         </div>
       )}
-      {isModalOpen && <Modal card={selectedCard!} onClose={() => setIsModalOpen(false)} />}
+    {isModalOpen && <Modal card={selectedCard!} onClose={handleModalClose} />}
     </div>
   );
 };
