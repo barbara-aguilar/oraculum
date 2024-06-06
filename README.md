@@ -1,5 +1,5 @@
-# Project Title
-🔮 Oraculum - Your online Tarot fortune teller
+# 🔮 Oraculum
+Your online Tarot fortune teller
 
 ## Description
 Oraculum is a online tarot fortune teller, where you choose a card and your luck will be revealed.
