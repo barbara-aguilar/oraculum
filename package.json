@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "next": "14.2.3",
@@ -14,12 +17,18 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.3.0",
+    "@vitest/coverage-istanbul": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
+    "jsdom": "^24.1.0",
     "sass": "^1.77.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^1.6.0"
   }
 }
