@@ -1,15 +1,12 @@
-import styles from './page.module.css';
-import CardDeck from './components/CardDeck/CardDeck';
+import styles from './styles/page.module.css';
+import Deck from './components/Deck';
 
 export default function Home() {
-  
-
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <CardDeck />
+        <Deck />
       </div>
     </main>
   );
 }
-
