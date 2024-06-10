@@ -1,5 +1,5 @@
-# Project Title
-🔮 Oraculum - Your online Tarot fortune teller
+# 🔮 Oraculum
+Your online Tarot fortune teller
 
 ## Description
 Oraculum is a online tarot fortune teller, where you choose a card and your luck will be revealed.
@@ -11,7 +11,7 @@ Created with Next.Js, React.Js and TypeScript
 
 ```bash
 # Clone the project to your machine
-git clone https://yourprojectlink.git
+git clone https://github.com/barbara-aguilar/oraculum.git
 ```
 
 ```bash
